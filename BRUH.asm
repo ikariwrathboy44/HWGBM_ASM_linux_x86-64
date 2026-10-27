@@ -1,0 +1,27 @@
+section .text
+global _start
+_start:
+	call   sys_write
+    call   load_0xe_and_HW
+	call   sys_exit
+	mov    rdi,rax
+	mov    rax,0x3c
+	syscall
+
+sys_write:
+	mov    edi,0x1
+	mov    eax,0x1
+	ret
+  
+load_0xe_and_HW:
+	mov    edx,0xe
+	mov    esi,HW 
+	syscall
+	ret
+    
+sys_exit:
+	xor    eax,eax
+	ret
+  
+HW:
+	db 0x48, 0x65, 0x6c, 0x6c, 0x6f, 0x2c, 0x20, 0x57, 0x6f, 0x72, 0x6c, 0x64, 0x21, 0x0a  
